@@ -34,6 +34,7 @@
     "gameMode": "Solo",
     "gameRegion": "Messier 82"
   },
+
   {
     "id": "6",
     "profileId": "6",
@@ -173,5 +174,13 @@
     "score": 104041,
     "gameMode": "Duo",
     "gameRegion": "Ring Nebula"
+  },
+
+  {
+    "id": "26",
+    "profileId": "21",
+    "score": 999999,
+    "gameMode": "Duo",
+    "gameRegion": "Keertana's Galaxy"
   }
 ]
