@@ -29,7 +29,7 @@ namespace TailSpin.SpaceGame.Web
                     break;
                 }
             }
-            string webAppName = System.Environment.GetEnvironmentVariable("https://genevatttest.azurewebsites.net");
+           
             // IFx initialization is a required step for emitting logs
             // Initialize Ifx using the Tenant and Role names that you used in your configuration 
             // Use the IP address you got above as the Role instance 
@@ -81,12 +81,15 @@ namespace TailSpin.SpaceGame.Web
         {
             using (Operation operation = new Operation("TTGTestTenantOperation"))
             {
+                string webAppName = System.Environment.GetEnvironmentVariable("WEBSITE_SITE_NAME");
+
                 AuditMandatoryProperties auditMandatoryProperties = new AuditMandatoryProperties();
-                auditMandatoryProperties.OperationName = "TestAutoIFxEvent";
+                auditMandatoryProperties.OperationName = "genevaTTTest";
                 auditMandatoryProperties.ResultType = OperationResult.Timeout;
                 auditMandatoryProperties.AddAuditCategory(AuditEventCategory.UserManagement);
                 auditMandatoryProperties.AddCallerIdentity(new CallerIdentity(CallerIdentityType.Username, "genevaTTTest"));
-                auditMandatoryProperties.AddTargetResource("TestTarget", "TestTargetValue");
+                //auditMandatoryProperties.AddTargetResource("TestTarget", "TestTargetValue");
+                auditMandatoryProperties.AddTargetResource("Web App Name", webAppName);
 
                 // And the most important part, calling the Audit functions: 
                 bool result = IfxAudit.LogApplicationAudit(auditMandatoryProperties, null) &&
