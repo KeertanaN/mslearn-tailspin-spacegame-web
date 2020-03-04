@@ -50,19 +50,19 @@ namespace TailSpin.SpaceGame.Web
             ErrorContext mdmError = new ErrorContext();
 
             MeasureMetric1D testMeasure = MeasureMetric1D.Create(
-                "TrustToolsAutoWPTest",
-                "TrustToolsAutoWPTest",
-                "TTAutoTestMetric",
-                "TTAutoTestDimension",
+                "TrustToolsAutoTest",
+                "TTNSAutoTest",
+                "TTMAutoTest",
+                "TestAutoDim",
                 ref mdmError);
-
+            Console.WriteLine(testMeasure.LogValue(101, "TestAutoDim"));
             if (testMeasure == null)
             {
                 Console.WriteLine("Fail to create MeasureMetric, error code is {0:X}, error message is {1}",
                     mdmError.ErrorCode,
                     mdmError.ErrorMessage);
             }
-            else if (!testMeasure.LogValue(101, "TTAutoTestDimension", ref mdmError))
+            else if (!testMeasure.LogValue(101, "TestAutoDim", ref mdmError))
             {
                 Console.WriteLine("Fail to log MeasureMetric value, error code is {0:X}, error message is {1}",
                     mdmError.ErrorCode,
@@ -81,7 +81,7 @@ namespace TailSpin.SpaceGame.Web
         {
             using (Operation operation = new Operation("TTGTestTenantOperation"))
             {
-                string webAppName = System.Environment.GetEnvironmentVariable("WEBSITE_SITE_NAME");
+                //string webAppName = System.Environment.GetEnvironmentVariable("WEBSITE_SITE_NAME");
 
                 AuditMandatoryProperties auditMandatoryProperties = new AuditMandatoryProperties();
                 auditMandatoryProperties.OperationName = "genevaTTTest";
@@ -89,7 +89,7 @@ namespace TailSpin.SpaceGame.Web
                 auditMandatoryProperties.AddAuditCategory(AuditEventCategory.UserManagement);
                 auditMandatoryProperties.AddCallerIdentity(new CallerIdentity(CallerIdentityType.Username, "genevaTTTest"));
                 //auditMandatoryProperties.AddTargetResource("TestTarget", "TestTargetValue");
-                auditMandatoryProperties.AddTargetResource("Web App Name", webAppName);
+                //auditMandatoryProperties.AddTargetResource("Web App Name", webAppName);
 
                 // And the most important part, calling the Audit functions: 
                 bool result = IfxAudit.LogApplicationAudit(auditMandatoryProperties, null) &&
